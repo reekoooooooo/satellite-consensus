@@ -44,3 +44,9 @@ desktop.ini
 
 # Logs
 *.log
+
+# Text log outputs
+event_log_*.txt
+log_*.txt
+logs/*.txt
+
