@@ -39,22 +39,22 @@ class Simulation:
                 if random.random() < RECOVERY_CHANCE:
                     sat.online    = True
                     sat.is_faulty = False
-                    events.append(f"  ✔  {sat.node_id} came back ONLINE")
+                    events.append(f"  [RECOVER]  {sat.node_id} came back ONLINE")
 
             elif sat.is_faulty:
                 if random.random() < RECOVERY_CHANCE:
                     sat.is_faulty = False
-                    events.append(f"  ✔  {sat.node_id} data normalized — fault cleared")
+                    events.append(f"  [RECOVER]  {sat.node_id} data normalized - fault cleared")
 
             else:
                 # Healthy sat — small chance something goes wrong
                 roll = random.random()
                 if roll < FAILURE_CHANCE:
                     sat.online = False
-                    events.append(f"  ✘  {sat.node_id} went OFFLINE")
+                    events.append(f"  [FAIL]     {sat.node_id} went OFFLINE")
                 elif roll < FAILURE_CHANCE + FAULT_CHANCE:
                     sat.is_faulty = True
-                    events.append(f"  ⚠  {sat.node_id} started sending BAD DATA")
+                    events.append(f"  [WARN]     {sat.node_id} started sending BAD DATA")
 
         if events:
             print(f"\n  [ FAULT INJECTION — Round {self.round} ]")
